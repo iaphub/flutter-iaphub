@@ -258,9 +258,7 @@ By default only subscriptions with an `active` or `grace_period` state are retur
 <br/>
 If you're looking to display a message when a user has a subscription on a `retry_period` or `paused` state, you can use the `includeSubscriptionStates` option.
 ```js
-  var allActiveProducts = await Iaphub.getActiveProducts({
-    includeSubscriptionStates: ['retry_period', 'paused']
-  });
+  var allActiveProducts = await Iaphub.getActiveProducts(includeSubscriptionStates: ['retry_period', 'paused']);
 ```
 
 ## Get all products
