@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'iaphub_flutter'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'IAPHUB SDK for Flutter'
   s.description      = <<-DESC
   The easiest way to implement IAP (In-app purchase) in your Flutter app
