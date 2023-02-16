@@ -277,9 +277,7 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
     *  Show manage subscriptions page
     */
    private func showManageSubscriptions(_ call: FlutterMethodCall, result: @escaping FlutterResult, args: [String: Any]) {
-      let sku = args["sku"] as? String
-
-      Iaphub.showManageSubscriptions(sku: sku, { (err) in
+      Iaphub.showManageSubscriptions({ (err) in
          if let err = err {
             return self.reject(result, err)
          }
