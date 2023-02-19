@@ -13,12 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'IAPHUB Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage()
-    );
+        title: 'IAPHUB Example',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomePage());
   }
 }
 
@@ -28,34 +27,28 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Observer(
-            builder: (_) => appStore.isLogged ? const StorePage() : const LoginPage()
-          ),
-          Observer(
-            builder: (_) {
-              if (appStore.alert != null) {
-                return AlertDialog(
-                  title: const Text("Alert"),
-                  content: Text(appStore.alert ?? ""),
-                  actions: <Widget>[
-                    TextButton(
-                      child: const Text("OK"),
-                      onPressed: () {
-                        appStore.closeAlert();
-                      },
-                    ),
-                  ],
-                );
-              }
-              else {
-                return Container();
-              }
-            }
-          )
-        ]
-      )
-    );
+        body: Stack(children: [
+      Observer(
+          builder: (_) =>
+              appStore.isLogged ? const StorePage() : const LoginPage()),
+      Observer(builder: (_) {
+        if (appStore.alert != null) {
+          return AlertDialog(
+            title: const Text("Alert"),
+            content: Text(appStore.alert ?? ""),
+            actions: <Widget>[
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  appStore.closeAlert();
+                },
+              ),
+            ],
+          );
+        } else {
+          return Container();
+        }
+      })
+    ]));
   }
 }

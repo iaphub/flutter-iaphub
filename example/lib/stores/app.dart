@@ -6,7 +6,6 @@ part 'app.g.dart';
 class AppStore extends _AppStore with _$AppStore {}
 
 abstract class _AppStore with Store {
-  
   @observable
   bool isLogged = false;
 
@@ -45,5 +44,4 @@ abstract class _AppStore with Store {
   closeAlert() {
     alert = null;
   }
-
 }
