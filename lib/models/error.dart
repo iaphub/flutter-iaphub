@@ -5,9 +5,7 @@ class IaphubError implements Exception {
   final String? subcode;
   final Map<String, dynamic>? params;
 
-  /**
-   * Constructor from JSON
-   */
+  /// Constructor from JSON
   IaphubError.fromJson(Map<String, dynamic> json)
     : message = json["message"] ?? "No message",
       code = json["code"] ?? "unexpected",

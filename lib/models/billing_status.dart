@@ -1,18 +1,12 @@
 import './error.dart';
 
 class IaphubBillingStatus {
-  /**
-   * Error
-   */
+  /// Billing error
   final IaphubError? error;
-  /**
-   * Filtered products ids
-   */
+  /// Filtered products ids
   final List<String> filteredProductIds;
 
-  /**
-   * Constructor from JSON
-   */
+  /// Constructor from JSON
   IaphubBillingStatus.fromJson(Map<String, dynamic> json) 
     : error = json["error"] != null ? IaphubError.fromJson(json["error"]) : null,
       filteredProductIds = (json["filteredProductIds"] ?? []).cast<String>();

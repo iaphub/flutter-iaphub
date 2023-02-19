@@ -5,12 +5,12 @@ import 'dart:io' show Platform;
 import '../stores/index.dart';
 
 class StorePage extends StatelessWidget {
-  const StorePage();
+  const StorePage({Key? key}) : super(key: key);
 
   buidProductsList(List<IaphubProduct> products, String emptyText) {
     if (products.isEmpty) {
       return Center(
-        child: Text(emptyText, style: TextStyle(fontSize: 18.0)),
+        child: Text(emptyText, style: const TextStyle(fontSize: 18.0)),
       );
     } else {
       return ListView.builder(
@@ -29,19 +29,20 @@ class StorePage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text((product?.localizedTitle ?? "No title"), style: TextStyle(fontSize: 18.0)),
-                        SizedBox(height: 8.0),
-                        Text((product?.localizedPrice ?? "No price"), style: TextStyle(fontSize: 14.0)),
+                        Text((product.localizedTitle ?? "No title"), style: const TextStyle(fontSize: 18.0)),
+                        const SizedBox(height: 8.0),
+                        Text((product.localizedPrice ?? "No price"), style: const TextStyle(fontSize: 14.0)),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Observer(
                       builder: (_) {
                         if (iapStore.skuProcessing == product.sku) {
                           return Container(
                             height: 20.0,
                             width: 20.0,
-                            child: CircularProgressIndicator(
+                            padding: const EdgeInsets.all(4.0),
+                            child: const CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
                             ),
                           );
@@ -67,7 +68,7 @@ class StorePage extends StatelessWidget {
         onTap: () => onClick(),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.blue
           ),
         ),
@@ -80,11 +81,11 @@ class StorePage extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(height: 30.0),
-          Center(
+          const SizedBox(height: 30.0),
+          const Center(
             child: Text("Products for Sale", style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
           ),
-          SizedBox(height: 15.0),
+          const SizedBox(height: 15.0),
           Observer(
             builder: (_) {
               return buidProductsList(iapStore.productsForSale, "No products for sale");
@@ -94,32 +95,32 @@ class StorePage extends StatelessWidget {
             builder: (_) {
               if (iapStore.billingStatus?.error?.code == "billing_unavailable") {
                 if (iapStore.billingStatus?.error?.subcode == "play_store_outdated") {
-                  return Text("Billing not available, you must update your Play Store App", style: TextStyle(fontSize: 18.0));
+                  return const Text("Billing not available, you must update your Play Store App", style: TextStyle(fontSize: 18.0));
                 }
                 else {
-                  return Text("Billing not available, please try again later", style: TextStyle(fontSize: 18.0));
+                  return const Text("Billing not available, please try again later", style: TextStyle(fontSize: 18.0));
                 }
               }
               return Container();
             }
           ),
-          SizedBox(height: 30.0),
-          Center(
+          const SizedBox(height: 30.0),
+          const Center(
             child: Text("Active Products", style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
           ),
-          SizedBox(height: 15.0),
+          const SizedBox(height: 15.0),
           Observer(
             builder: (_) {
               return buidProductsList(iapStore.activeProducts, "No active products");
             }
           ),
-          SizedBox(height: 100.0),
+          const SizedBox(height: 100.0),
           buildLink("Restore purchases", () => iapStore.restore()),
-          SizedBox(height: 30.0),
+          const SizedBox(height: 30.0),
           buildLink("Manage subscriptions", () => iapStore.showManageSubscriptions()),
-          SizedBox(height: 30.0),
+          const SizedBox(height: 30.0),
           Platform.isIOS ? buildLink("Redeem promo code", () => iapStore.presentCodeRedemptionSheet()) : Container(),
-          SizedBox(height: 30.0),
+          const SizedBox(height: 30.0),
           buildLink("Logout", () => appStore.logout()),
         ],
       ),

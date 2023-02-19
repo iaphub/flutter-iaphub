@@ -1,12 +1,10 @@
-import 'dart:developer';
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:iaphub_flutter/iaphub_flutter.dart';
 import './index.dart';
 
 part 'iap.g.dart';
 
-class IapStore = _IapStore with _$IapStore;
+class IapStore extends _IapStore with _$IapStore {}
 
 abstract class _IapStore with Store {
   
@@ -14,7 +12,7 @@ abstract class _IapStore with Store {
   bool isInitialized = false;
 
   @observable
-  String? skuProcessing = null;
+  String? skuProcessing;
 
   @observable
   List<IaphubProduct> productsForSale = [];
@@ -23,7 +21,7 @@ abstract class _IapStore with Store {
   List<IaphubActiveProduct> activeProducts = [];
 
   @observable
-  IaphubBillingStatus? billingStatus = null;
+  IaphubBillingStatus? billingStatus;
 
   @action
   init() async {
@@ -38,20 +36,19 @@ abstract class _IapStore with Store {
     isInitialized = true;
     // Listen to user updates and refresh productsForSale/activeProducts
 		Iaphub.addEventListener('onUserUpdate', () {
-      print("-> Got user update");
-			this.refreshProducts();
+		  refreshProducts();
 		});
 		Iaphub.addEventListener('onDeferredPurchase', (transaction) {
-			print("-> Got deferred purchase: ${transaction}");
+      // Triggered when a deferred purchase is detected
 		});
 		Iaphub.addEventListener('onError', (err) {
-			print("-> Got err: ${err}");
+      // Triggered when an error is detected
 		});
 		Iaphub.addEventListener('onReceipt', (receipt) {
-			print("-> Got receipt");
+			// Triggered when a receipt is detected
 		});
 		Iaphub.addEventListener('onBuyRequest', (opts) {
-			print("-> Got buy request: ${opts}");
+			// Triggered when a buy request is detected
 		});
   }
 
@@ -76,10 +73,10 @@ abstract class _IapStore with Store {
 	refreshProducts() async {
     // Refresh products
     var products = await Iaphub.getProducts();
-    this.activeProducts = products.activeProducts;
-    this.productsForSale = products.productsForSale;
+    activeProducts = products.activeProducts;
+    productsForSale = products.productsForSale;
     // Resfresh billing status
-    this.billingStatus = await Iaphub.getBillingStatus();
+    billingStatus = await Iaphub.getBillingStatus();
 	}
 
   @action
@@ -102,7 +99,6 @@ abstract class _IapStore with Store {
 			}
 		}
     on IaphubError catch (err) {
-      print("Err code: ${err.code}, subcode: ${err.subcode}");
 			skuProcessing = null;
 			
       var errors = {
@@ -114,22 +110,16 @@ abstract class _IapStore with Store {
         "billing_unavailable": "In-app purchase not allowed",
         // The remote server couldn't be reached properly
         "network_error": "Network error, please try to restore your purchases later (Button in the settings) or contact the support (support@myapp.com)",
-        /*
-        * The receipt has been processed on IAPHUB but something went wrong
-        * It is probably because of an issue with the configuration of your app or a call to the Itunes/GooglePlay API that failed
-        * IAPHUB will automatically retry to process the receipt if possible (depends on the error)
-        */
+        // The receipt has been processed on IAPHUB but something went wrong
+        // It is probably because of an issue with the configuration of your app or a call to the Itunes/GooglePlay API that failed
+        // IAPHUB will automatically retry to process the receipt if possible (depends on the error)
         "receipt_failed": "We're having trouble validating your transaction, give us some time, we'll retry to validate your transaction ASAP",
-        /*
-        * The user has already an active subscription on a different platform (android or ios)
-        * This security has been implemented to prevent a user from ending up with two subscriptions of different platforms
-        * You can disable the security by providing the 'crossPlatformConflict' parameter to the buy method (Iaphub.buy(sku, {crossPlatformConflict: false}))
-        */
+        // The user has already an active subscription on a different platform (android or ios)
+        // This security has been implemented to prevent a user from ending up with two subscriptions of different platforms
+        // You can disable the security by providing the 'crossPlatformConflict' parameter to the buy method (Iaphub.buy(sku, {crossPlatformConflict: false}))
         "cross_platform_conflict": "It seems like you already have a subscription on a different platform, please use the same platform to change your subscription or wait for your current subscription to expire",
-        /*
-        * The transaction is successful but the product belongs to a different user
-        * You should ask the user to use the account with which he originally bought the product or ask him to restore its purchases in order to transfer the previous purchases to the new account
-        */
+        // The transaction is successful but the product belongs to a different user
+        // You should ask the user to use the account with which he originally bought the product or ask him to restore its purchases in order to transfer the previous purchases to the new account
         "user_conflict": "Product owned by a different user, please use the account with which you originally bought the product or restore your purchases",
         // Unknown
         "unexpected": "We were not able to process your purchase, please try again later or contact the support (support@myapp.com)"
@@ -137,7 +127,7 @@ abstract class _IapStore with Store {
       var errorsToIgnore = ["user_cancelled", "product_already_purchased"];
       var errorMessage = errors[err.code];
 
-      if (errorMessage == null && errorsToIgnore.indexOf(err.code) == -1) {
+      if (errorMessage == null && !errorsToIgnore.contains(err.code)) {
         errorMessage = errors["unexpected"];
       }
       if (errorMessage != null) {
@@ -148,7 +138,7 @@ abstract class _IapStore with Store {
 
   @action
   restore() async {
-		var response = await Iaphub.restore();
+		await Iaphub.restore();
     appStore.openAlert("Purchases restored");
 	}
 

@@ -3,7 +3,7 @@ import 'index.dart';
 
 part 'app.g.dart';
 
-class AppStore = _AppStore with _$AppStore;
+class AppStore extends _AppStore with _$AppStore {}
 
 abstract class _AppStore with Store {
   
@@ -11,10 +11,10 @@ abstract class _AppStore with Store {
   bool isLogged = false;
 
   @observable
-  String? alert = null;
+  String? alert;
 
   _AppStore() {
-    this.start();
+    start();
   }
 
   start() async {
@@ -27,23 +27,23 @@ abstract class _AppStore with Store {
       iapStore.login(userId);
     }
     await iapStore.refreshProducts();
-    this.isLogged = true;
+    isLogged = true;
   }
 
   @action
   logout() {
     iapStore.logout();
-    this.isLogged = false;
+    isLogged = false;
   }
 
   @action
   openAlert(String content) {
-    this.alert = content;
+    alert = content;
   }
 
   @action
   closeAlert() {
-    this.alert = null;
+    alert = null;
   }
 
 }

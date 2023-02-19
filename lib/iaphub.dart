@@ -13,25 +13,18 @@ import './models/error.dart';
 
 class Iaphub {
 
-  static final _channel = const MethodChannel('iaphub_flutter');
+  static const _channel = MethodChannel('iaphub_flutter');
 
-  static Map<String, List<Function>> _listeners = Map<String, List<Function>>();
+  static Map<String, List<Function>> _listeners = {};
 
-  /**
-   * Start Iaphub
-   * @param {Object} opts Options
-   * @param {String} opts.appId App id that can be found on the IAPHUB dashboard
-   * @param {String} opts.apiKey Api key that can be found on the IAPHUB dashboard
-   * @param {Boolean} opts.allowAnonymousPurchase Option to allow purchases without being logged in
-   * @param {String} opts.environment Option to specify a different environment than production
-   */
-  static Future<void> start({String appId = "", String apiKey = "", String? userId = null, bool allowAnonymousPurchase = false, String environment = 'production'}) async {
+  /// Start Iaphub
+  static Future<void> start({String appId = "", String apiKey = "", String? userId, bool allowAnonymousPurchase = false, String environment = 'production'}) async {
     // Clear listeners
     removeAllListeners();
     // Add channel call handler
     _channel.setMethodCallHandler(_invokeListener);
     // Invoke start
-    final sdkVersion = IaphubConfig.version;
+    const sdkVersion = IaphubConfig.version;
     await _invokeMethod('start', {
       "appId": appId,
       "apiKey": apiKey,
@@ -48,9 +41,7 @@ class Iaphub {
     });
   }
 
-  /**
-   * Add event listeners
-   */
+  /// Add event listeners
   static Function addEventListener(String eventName, Function callback) {
     if (_listeners[eventName] == null) {
       _listeners[eventName] = [];
@@ -59,9 +50,7 @@ class Iaphub {
     return callback;
   }
 
-  /** 
-   * Remove event listener
-   */
+  /// Remove event listener
   static void removeEventListener(Function callback) {
     _listeners.forEach((eventName, events) {
       int index = events.indexOf(callback);
@@ -71,73 +60,43 @@ class Iaphub {
       }
     });
   }
-
-  /** 
-   * Remove all event listeners
-   */
+ 
+  /// Remove all event listeners
   static void removeAllListeners() {
     _listeners = {};
   }
 
-  /**
-   * Stop Iaphub
-   * @returns {Future<void>}
-   */
+  /// Stop Iaphub
   static Future<void> stop() async {
     await _invokeMethod('stop', {});
   }
 
-  /**
-   * Log in user
-   * @param {String} userId User id
-   * @returns {Future<void>}
-   */
+  /// Log in user
   static Future<void> login(String userId) async {
     await _invokeMethod('login', {"userId": userId});
   }
 
-  /**
-   * Get user id
-   * @returns {Future<String>}
-   */
+  /// Get user id
   static Future<String> getUserId() async {
     return await _invokeMethodAndParseString('getUserId', {});
   }
 
-  /**
-   * Log out user
-   * @returns {Future<void>}
-   */
+  /// Log out user
   static Future<void> logout() async {
     await _invokeMethod('logout', {});
   }
 
-  /**
-   * Set device params
-   * @param {Dict} params Device params
-   * @returns {Future<void>}
-   */
+  /// Set device params
   static Future<void> setDeviceParams(Map<String, String> params) async {
     await _invokeMethod('setDeviceParams', params);
   }
 
-  /**
-   * Set user tags
-   * @param {Dict} tags User tags
-   * @returns {Promise<void>}
-   */
+  /// Set user tags
   static Future<void> setUserTags(Map<String, String> tags) async {
     await _invokeMethod('setUserTags', tags);
   }
 
-  /**
-   * Buy product
-   * @param {String} sku Product sku
-   * @param {Object} opts Options
-   * @param {Boolean} [opts.crossPlatformConflict=true] Throws an error if the user has already a subscription on a different platform
-   * @param {String} opts.prorationMode Specify the proration mode when replacing a subscription (Android only)
-   * @returns {Future<IaphubTransaction>}
-   */
+  /// Buy product
   static Future<IaphubTransaction> buy(String sku, {bool crossPlatformConflict = true, String? prorationMode}) async {
     final data = await _invokeMethodAndParseResult<Map<String, dynamic>>('buy', {
       "sku": sku,
@@ -148,77 +107,52 @@ class Iaphub {
     return IaphubTransaction.fromJson(data);
   }
 
-  /**
-   * Restore purchases
-   * @returns {Future<IaphubRestoreResponse>}
-   */
+  /// Restore purchases
   static Future<IaphubRestoreResponse> restore() async {
     final data = await _invokeMethodAndParseResult<Map<String, dynamic>>('restore', {});
 
     return IaphubRestoreResponse.fromJson(data);
   }
 
-  /**
-   * Get active products
-   * @param {Object} opts Options
-   * @param {String[]} [opts.includeSubscriptionStates=[]] Include subscription states (only 'active' and 'grace_period' states are returned by default)
-   * @returns {Future<List<IaphubActiveProduct>>}
-   */
+  /// Get active products
   static Future<List<IaphubActiveProduct>> getActiveProducts({List<String> includeSubscriptionStates = const []}) async {
     final data = await _invokeMethodAndParseResult<List<Map<String, dynamic>>>('getActiveProducts', {"includeSubscriptionStates": includeSubscriptionStates});
 
     return data.map((item) => IaphubActiveProduct.fromJson(item)).toList();
   }
 
-  /**
-   * Get products for sale
-   * @returns {Future<List<IaphubProduct>>}
-   */
+  /// Get products for sale
   static Future<List<IaphubProduct>> getProductsForSale() async {
     final data = await _invokeMethodAndParseResult<List<Map<String, dynamic>>>('getProductsForSale', {});
 
     return data.map((item) => IaphubProduct.fromJson(item)).toList();
   }
 
-  /**
-   * Get products
-   * @param {Object} opts Options
-   * @param {String[]} [opts.includeSubscriptionStates=[]] Include subscription states (only 'active' and 'grace_period' states are returned by default)
-   * @returns {Future<IaphubProducts>}
-   */
+  /// Get products
   static Future<IaphubProducts> getProducts({List<String> includeSubscriptionStates = const []}) async {
     final data = await _invokeMethodAndParseResult<Map<String, dynamic>>('getProducts', {"includeSubscriptionStates": includeSubscriptionStates});
 
     return IaphubProducts.fromJson(data);
   }
 
-  /**
-   * Get billing status
-   * @returns {Future<IaphubBillingStatus>}
-   */
+  /// Get billing status
   static Future<IaphubBillingStatus> getBillingStatus() async {
     final data = await _invokeMethodAndParseResult<Map<String, dynamic>>('getBillingStatus', {});
 
     return IaphubBillingStatus.fromJson(data);
   }
 
-  /**
-   * Present code redemption (iOS only)
-   * @returns {Future<void>}
-   */
+  /// Present code redemption (iOS only)
   static Future<void> presentCodeRedemptionSheet() async {
     await _invokeMethod('presentCodeRedemptionSheet', {});
   }
 
-  /**
-   * Show manage subscriptions page
-   * @returns {Future<void>}
-   */
+  /// Show manage subscriptions page
   static Future<void> showManageSubscriptions({String? sku}) async {
     await _invokeMethod('showManageSubscriptions', {"sku": sku});
   }
 
-  /******************************** PRIVATE ********************************/
+  // PRIVATE
 
   static Future<T> _invokeMethodAndParseResult<T>(String methodName, [dynamic args]) async {
     try {

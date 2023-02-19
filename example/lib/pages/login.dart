@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../stores/index.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage();
+  const LoginPage({Key? key}) : super(key: key);
 
   buildLink(String text, Function onClick) {
     return (
@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
         onTap: () => onClick(),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.blue
           ),
         ),
@@ -25,12 +25,12 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'This is the login page',
             ),
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             buildLink("Login with user id '42'", () => appStore.login("42")),
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             buildLink("Login anonymously", () => appStore.login(null)),
           ],
         ),
