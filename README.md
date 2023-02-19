@@ -4,14 +4,13 @@
 <br/>
 <br/>
 
-We're making in-app purchases EASY.<br/>
-Stop wasting time & resources to reinvent the wheel.<br/>
+We're making in-app purchases EASY.\
+Stop wasting time & resources to reinvent the wheel.\
 @ [IAPHUB](https://www.iaphub.com) we developed all the tools you need to sell in-app purchases & subscriptions, manage your customers and grow your revenue. 🚀
-<br/>
 
 ## Getting started
 
-Implementing In-app purchases in your app should be a piece of cake!<br/>
+Implementing In-app purchases in your app should be a piece of cake!\
 
 1. Create an account on [IAPHUB](https://www.iaphub.com)
 
@@ -28,7 +27,7 @@ flutter pub add iaphub_flutter
 3. Read our complete guide to [set up your app](https://www.iaphub.com/docs/getting-started/set-up-app/).
 
 ## Start
-Call the `start` method in order to initialize IAPHUB.<br/><br/>
+Call the `start` method in order to initialize IAPHUB.\
 ℹ️ It should be called as soon as possible when starting your app.
 
 ```js
@@ -79,7 +78,6 @@ Call the `addEventListener` method to listen to an event and `removeEventListene
     // You'll have to call the buy method whenever you're ready
     // Also note you'll have a callback to know when the transaction is done (you woudn't otherwise)
     var transaction = await Iaphub.buy(sku);
-    console.log("Purchase done: ", transaction);
   });
   // Remove listener
   Iaphub.removeEventListener(listener);
@@ -90,7 +88,6 @@ Call the `addEventListener` method to listen to an event and `removeEventListene
   // Add listener
   var listener = Iaphub.addEventListener('onError', (err) {
     // You'll catch any error here (even errors thrown by IAPHUB methods)
-    console.log("Error: ", err.message);
   });
   // Remove listener
   Iaphub.removeEventListener(listener);
@@ -100,8 +97,7 @@ Call the `addEventListener` method to listen to an event and `removeEventListene
 ```js
   // Add listener
   var listener = Iaphub.addEventListener('onReceipt', (data) {
-    console.log("Receipt err: ", data.err);
-    console.log("Receipt data: ", err.receipt);
+    
   });
   // Remove listener
   Iaphub.removeEventListener(listener);
@@ -110,20 +106,20 @@ Call the `addEventListener` method to listen to an event and `removeEventListene
 ℹ️ You can also remove all the listeners by using the method `removeAllListeners()`
 
 ## Login
-Call the `login` method to authenticate a user.<br/>
+Call the `login` method to authenticate a user.
 
 ⚠ When a user isn't logged he's considered *anonymous*, we'll generate automatically a anonymous user id (prefixed with 'a:')
 
 ⚠ You should provide an id that is non-guessable and isn't public. (Email not allowed)
 
-⚠ The user will be reset, `setOnUserUpdateListener` will only be called until after the user has been loaded first (using getProductsForSale/getActiveProducts).<br/>
+⚠ The user will be reset, `setOnUserUpdateListener` will only be called until after the user has been loaded first (using getProductsForSale/getActiveProducts).
 
 ```js
 await Iaphub.login("1e5494930c48ed07aa275fd2");
 ```
 
 ## Get user ID
-Call the `getUserId` method to get the user id of the logged user.<br/>
+Call the `getUserId` method to get the user id of the logged user.\
 If no user is logged the anonymous user id will be returned (prefixed with 'a:').
 
 ```js
@@ -131,18 +127,18 @@ var userId = await Iaphub.getUserId()
 ```
 
 ## Logout
-Call the `logout` method to log the user out.<br/>
-The user will switch back to his anonymous user id (prefixed with 'a:').<br/>
+Call the `logout` method to log the user out.\
+The user will switch back to his anonymous user id (prefixed with 'a:').
 
-⚠ The user will be reset, `setOnUserUpdateListener` will only be called until after the user has been loaded first (using getProductsForSale/getActiveProducts).<br/>
+⚠ The user will be reset, `setOnUserUpdateListener` will only be called until after the user has been loaded first (using getProductsForSale/getActiveProducts).\
 
 ```js
 await Iaphub.logout()
 ```
 
 ## Set user tags
-Call the `setUserTags` method to update the user tags.<br/>
-User tags will appear on the user page of the IAPHUB dashboard.<br/>
+Call the `setUserTags` method to update the user tags.\
+User tags will appear on the user page of the IAPHUB dashboard.\
 When using IAPHUB's smart listings, you'll be able to return different products depending on the user tags.
 
 ```js
@@ -159,7 +155,7 @@ A few details:
   - A tag value is limited to 64 characters
 
 ## Set device params
-Call the `setDeviceParams` method to set parameters for the device<br/>
+Call the `setDeviceParams` method to set parameters for the device.\
 When using IAPHUB's smart listings, you'll be able to return different products depending on the device params.
 
 ```js
@@ -178,7 +174,7 @@ A few details:
   - You can provide up to 5 params
 
 ## Get products for sale
-Call the ``getProductsForSale`` method to get the user's products for sale<br/>
+Call the ``getProductsForSale`` method to get the user's products for sale.\
 You should use this method when displaying the page with the list of your products for sale.
 
 ⚠ If the request fails because of a network issue, the method returns the latest request in cache (if available, otherwise an error is thrown).
@@ -239,7 +235,7 @@ print(products);
 ```
 
 ## Get active products
-If you're relying on IAPHUB on the client side (instead of using your server with webhooks) to detect if the user has active products (auto-renewable subscriptions, non-renewing subscriptions or non-consumables), you should use the `getActiveProducts` method.<br/>
+If you're relying on IAPHUB on the client side (instead of using your server with webhooks) to detect if the user has active products (auto-renewable subscriptions, non-renewing subscriptions or non-consumables), you should use the `getActiveProducts` method.
 
 ⚠ If the request fails because of a network issue, the method returns the latest request in cache (if available with no expired subscription, otherwise an error is thrown).
 
@@ -254,8 +250,8 @@ Value | Description |
 | retry_period | The subscription is in the retry period, you must restrict the access to the features offered by your subscription and display a message asking for the user to update its payment informations.
 | paused | The subscription is paused (Android only) and will automatically resume at a later date (`autoResumeDate` property), you must restrict the access to the features offered by your subscription.
 
-By default only subscriptions with an `active` or `grace_period` state are returned by the `getActiveProducts()` method because you must restrict the access to the features offered by your subscription on a `retry_period` or `paused` state.<br/>
-<br/>
+By default only subscriptions with an `active` or `grace_period` state are returned by the `getActiveProducts()` method because you must restrict the access to the features offered by your subscription on a `retry_period` or `paused` state.\
+\
 If you're looking to display a message when a user has a subscription on a `retry_period` or `paused` state, you can use the `includeSubscriptionStates` option.
 ```js
   var allActiveProducts = await Iaphub.getActiveProducts(includeSubscriptionStates: ['retry_period', 'paused']);
@@ -266,8 +262,6 @@ You can also get the products for sale and active products using one method `get
 
 ```js
   var products = await Iaphub.getProducts();
-  print("Products for sale: ${products.productsForSale}");
-  print("Active products: ${products.activeProducts}");
 ```
 
 ## Get billing status
@@ -291,29 +285,29 @@ The `getBillingStatus` method will return useful informations if you have an iss
 ```
 
 ## Buy a product
-Call the ``buy`` method to buy a product<br/><br/>
-ℹ️ The method needs the product sku that you would get from one of the products of `getProductsForSale()`.<br/>
-ℹ️ The method will process a purchase as a subscription replace if you currently have an active subscription and you buy a subscription of the same group (product group created on IAPHUB).<br/>
+Call the ``buy`` method to buy a product\
+\
+ℹ️ The method needs the product sku that you would get from one of the products of `getProductsForSale()`.\
+ℹ️ The method will process a purchase as a subscription replace if you currently have an active subscription and you buy a subscription of the same group (product group created on IAPHUB).\
 
 ```js
 try {
   var transaction = await Iaphub.buy("pack10_tier15");
-  print(transaction);
-  {
-    id: "2e5198930c48ed07aa275fd3",
-    type: "consumable",
-    sku: "pack10_tier15",
-    purchase: "4e5198930c48ed07aa275fd2",
-    purchaseDate: "2020-03-11T00:42:27.000Z",
-    webhookStatus: "success",
-    group: "3e5198930c48ed07aa275fd8",
-    groupName: "pack",
-    localizedTitle: "Pack 10",
-    localizedDescription: "Pack of 10 coins",
-    localizedPrice: "$14.99",
-    price: 14.99,
-    currency: "USD"
-  }
+  // {
+  //   id: "2e5198930c48ed07aa275fd3",
+  //   type: "consumable",
+  //   sku: "pack10_tier15",
+  //   purchase: "4e5198930c48ed07aa275fd2",
+  //   purchaseDate: "2020-03-11T00:42:27.000Z",
+  //   webhookStatus: "success",
+  //   group: "3e5198930c48ed07aa275fd8",
+  //   groupName: "pack",
+  //   localizedTitle: "Pack 10",
+  //   localizedDescription: "Pack of 10 coins",
+  //   localizedPrice: "$14.99",
+  //   price: 14.99,
+  //   currency: "USD"
+  // }
 
   /*
    * The purchase has been successful but we need to check that the webhook to our server was successful as well
@@ -392,19 +386,18 @@ Value | Description |
 | deferred | The replacement takes effect when the current subscription expires
 
 ## Restore user purchases
-Call the ``restore`` method to restore the user purchases<br/><br/>
-ℹ️ You must display a button somewhere in your app in order to allow the user to restore its purchases.<br/>
+Call the ``restore`` method to restore the user purchases.\
+\
+ℹ️ You must display a button somewhere in your app in order to allow the user to restore its purchases.\
 
 ```js
 var response = await Iaphub.restore();
-// New purchases
-print('New purchases: ${response.newPurchases}');
-// Extisting active products transferred to the user
-print('Transferred active products: ${response.transferredActiveProducts}');
+// response.newPurchases: New purchases
+// response.transferredActiveProducts: Extisting active products transferred to the user
 ```
 
 ## Show manage subscriptions
-Call the ``showManageSubscriptions`` to display the GooglePlay/AppStore page to manage the subscriptions.<br/><br/>
+Call the ``showManageSubscriptions`` to display the GooglePlay/AppStore page to manage the subscriptions.
 
 ```js
 await Iaphub.showManageSubscriptions();
@@ -417,7 +410,7 @@ await Iaphub.showManageSubscriptions(sku: "subscription1");
 ```
 
 ## Present code redemption sheet (iOS only)
-Call the ``presentCodeRedemptionSheet`` to display a sheet that enable users to redeem subscription offer codes that you configure in App Store Connect<br/><br/>
+Call the ``presentCodeRedemptionSheet`` to display a sheet that enable users to redeem subscription offer codes that you configure in the App Store Connect.
 
 ```js
 await Iaphub.presentCodeRedemptionSheet();
@@ -436,10 +429,10 @@ await Iaphub.presentCodeRedemptionSheet();
 | localizedPrice | `String?` | Localized price (Ex: "$12.99") |
 | localizedTitle | `String?` | Product title (Ex: "Membership") |
 | localizedDescription | `String?` | Product description (Ex: "Join the community with a membership") |
-| group | `String?` | ⚠ Only available if the product as a group<br>Group id (From IAPHUB) |
-| groupName | `String?` | ⚠ Only available if the product as a group<br>Name of the product group created on IAPHUB (Ex: "premium") |
-| subscriptionDuration | `String?` | ⚠ Only available for a subscription<br> Duration of the subscription cycle specified in the ISO 8601 format (Possible values: 'P1W', 'P1M', 'P3M', 'P6M', 'P1Y') |
-| subscriptionIntroPhases | `List<IaphubSubscriptionIntroPhase>?` | ⚠ Only available for a subscription<br> Ordered list of the subscription intro phases (intro price, free trial) |
+| group | `String?` | ⚠ Only available if the product as a group. Group id (From IAPHUB) |
+| groupName | `String?` | ⚠ Only available if the product as a group. Name of the product group created on IAPHUB (Ex: "premium") |
+| subscriptionDuration | `String?` | ⚠ Only available for a subscription. Duration of the subscription cycle specified in the ISO 8601 format (Possible values: 'P1W', 'P1M', 'P3M', 'P6M', 'P1Y') |
+| subscriptionIntroPhases | `List<IaphubSubscriptionIntroPhase>?` | ⚠ Only available for a subscription. Ordered list of the subscription intro phases (intro price, free trial) |
 
 ### IaphubSubscriptionIntroPhase
 | Prop  | Type | Description |
@@ -465,9 +458,9 @@ await Iaphub.presentCodeRedemptionSheet();
 | isFamilyShare | `bool` | True if the subscription is shared by a family member (iOS subscriptions only) |
 | subscriptionRenewalProduct | `String?` | Subscription product id of the next renewal (only defined if different than the current product) |
 | subscriptionRenewalProductSku | `String?` | Subscription product sku of the next renewal |
-| subscriptionState | `String?` | State of the subscription<br>(Possible values: 'active', 'grace_period', 'retry_period', 'paused') |
-| subscriptionPeriodType | `String?` | Current phase type of the subscription<br>(Possible values: 'normal', 'trial', 'intro') |
-| androidToken | `String?` | ⚠ Only available for an android purchase<br>Android purchase token of the transaction |
+| subscriptionState | `String?` | State of the subscription (Possible values: 'active', 'grace_period', 'retry_period', 'paused') |
+| subscriptionPeriodType | `String?` | Current phase type of the subscription (Possible values: 'normal', 'trial', 'intro') |
+| androidToken | `String?` | ⚠ Only available for an android purchase. Android purchase token of the transaction |
 
 ### IaphubTransaction (inherit from IaphubActiveProduct)
 | Prop  | Type | Description |
@@ -498,4 +491,3 @@ await Iaphub.presentCodeRedemptionSheet();
 ## Full example
 
 You should check out the [Example app](https://github.com/iaphub/flutter-iaphub/tree/master/example).
-<br/>
