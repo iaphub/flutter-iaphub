@@ -1,6 +1,9 @@
 # Changelog
 This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2023-02-19
+- Fix static analysis INFO
+
 ## [1.0.1] - 2023-02-15
 - Fix showManageSubscriptions method on iOS
 
