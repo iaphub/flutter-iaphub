@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version          = '1.0.2'
   s.summary          = 'IAPHUB SDK for Flutter'
   s.description      = <<-DESC
-  The easiest way to implement IAP (In-app purchase) in your Flutter app
+  The easiest way to monetize your iOS and Android Flutter apps by selling in-app purchases. Sell subscriptions and other digital goods using our user-friendly SDK.
                          DESC
   s.homepage         = 'https://www.iaphub.com'
   s.license          = { :type => 'MIT', :file => '../LICENSE' }
