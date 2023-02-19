@@ -10,7 +10,7 @@ Stop wasting time & resources to reinvent the wheel.\
 
 ## Getting started
 
-Implementing In-app purchases in your app should be a piece of cake!\
+Implementing In-app purchases in your app should be a piece of cake!
 
 1. Create an account on [IAPHUB](https://www.iaphub.com)
 
@@ -44,7 +44,7 @@ Call the `start` method in order to initialize IAPHUB.\
 ```
 
 ## Events
-Call the `addEventListener` method to listen to an event and `removeEventListener` to stop listening to an event.<br/>
+Call the `addEventListener` method to listen to an event and `removeEventListener` to stop listening to an event.
 
 #### onUserUpdate - Event triggered when the user products have been updated
 ```js
@@ -130,7 +130,7 @@ var userId = await Iaphub.getUserId()
 Call the `logout` method to log the user out.\
 The user will switch back to his anonymous user id (prefixed with 'a:').
 
-⚠ The user will be reset, `setOnUserUpdateListener` will only be called until after the user has been loaded first (using getProductsForSale/getActiveProducts).\
+⚠ The user will be reset, `setOnUserUpdateListener` will only be called until after the user has been loaded first (using getProductsForSale/getActiveProducts).
 
 ```js
 await Iaphub.logout()
@@ -288,7 +288,7 @@ The `getBillingStatus` method will return useful informations if you have an iss
 Call the ``buy`` method to buy a product\
 \
 ℹ️ The method needs the product sku that you would get from one of the products of `getProductsForSale()`.\
-ℹ️ The method will process a purchase as a subscription replace if you currently have an active subscription and you buy a subscription of the same group (product group created on IAPHUB).\
+ℹ️ The method will process a purchase as a subscription replace if you currently have an active subscription and you buy a subscription of the same group (product group created on IAPHUB).
 
 ```js
 try {
@@ -388,7 +388,7 @@ Value | Description |
 ## Restore user purchases
 Call the ``restore`` method to restore the user purchases.\
 \
-ℹ️ You must display a button somewhere in your app in order to allow the user to restore its purchases.\
+ℹ️ You must display a button somewhere in your app in order to allow the user to restore its purchases.
 
 ```js
 var response = await Iaphub.restore();
