@@ -29,7 +29,12 @@ abstract class _IapStore with Store {
         // The app id is available on the settings page of your app
         appId: "5e4890f6c61fc971cf46db4d",
         // The (client) api key is available on the settings page of your app
-        apiKey: "SDp7aY220RtzZrsvRpp4BGFm6qZqNkNf");
+        apiKey: "SDp7aY220RtzZrsvRpp4BGFm6qZqNkNf",
+        // Allow anonymous purchases
+        allowAnonymousPurchase: true,
+        // Enable StoreKit v2
+        enableStorekitV2: true
+    );
     // Iaphub is now initialized and ready to use
     isInitialized = true;
     // Listen to user updates and refresh productsForSale/activeProducts

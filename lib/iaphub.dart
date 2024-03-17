@@ -22,6 +22,7 @@ class Iaphub {
       String apiKey = "",
       String? userId,
       bool allowAnonymousPurchase = false,
+      bool enableStorekitV2 = false,
       String environment = 'production'}) async {
     // Clear listeners
     removeAllListeners();
@@ -34,6 +35,7 @@ class Iaphub {
       "apiKey": apiKey,
       "userId": userId,
       "allowAnonymousPurchase": allowAnonymousPurchase,
+      "enableStorekitV2": enableStorekitV2,
       "environment": environment,
       "sdkVersion": sdkVersion
     });

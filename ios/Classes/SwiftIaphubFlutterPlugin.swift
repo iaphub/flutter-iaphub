@@ -90,6 +90,7 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
       let userId = args["userId"] as? String
       let allowAnonymousPurchase = args["allowAnonymousPurchase"] as? Bool ?? false
       let enableDeferredPurchaseListener = args["enableDeferredPurchaseListener"] as? Bool ?? true
+      let enableStorekitV2 = args["enableStorekitV2"] as? Bool ?? false
       let environment = args["environment"] as? String ?? "production"
       let sdkVersion = args["sdkVersion"] as? String ?? ""
       let sdk = "flutter"
@@ -101,6 +102,7 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
          userId: userId,
          allowAnonymousPurchase: allowAnonymousPurchase,
          enableDeferredPurchaseListener: enableDeferredPurchaseListener,
+         enableStorekitV2: enableStorekitV2,
          environment: environment,
          sdk: sdk,
          sdkVersion: sdkVersion
