@@ -1,6 +1,9 @@
 # Changelog
 This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2024-04-29
+- iOS SDK updated to 4.2.3
+
 ## [1.1.0] - 2024-03-17
 - IAPHUB Android SDK & iOS SDK updated to 4.2.2
 - enableStorekitV2 property added
