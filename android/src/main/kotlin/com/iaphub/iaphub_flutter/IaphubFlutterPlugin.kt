@@ -88,7 +88,7 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     val environment = this.getString(call, "environment", "production")
     val sdkVersion = this.getString(call, "sdkVersion", "")
     val extraSdk = this.getStringOrNull(call, "sdk")
-    var sdk = "react_native"
+    var sdk = "flutter"
 
     if (extraSdk != null) {
       sdk = "${sdk}/${extraSdk}"
