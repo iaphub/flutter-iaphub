@@ -1,6 +1,6 @@
 name: iaphub_flutter
 description: The easiest way to monetize your iOS and Android Flutter apps by selling in-app purchases. Sell subscriptions and other digital goods using our user-friendly SDK.
-version: 1.2.0
+version: 1.3.0
 homepage: https://www.iaphub.com
 repository: https://github.com/iaphub/flutter-iaphub
 issue_tracker: https://github.com/iaphub/flutter-iaphub/issues
