@@ -33,7 +33,9 @@ abstract class _IapStore with Store {
         // Allow anonymous purchases
         allowAnonymousPurchase: true,
         // Enable StoreKit v2
-        enableStorekitV2: true
+        enableStorekitV2: true,
+        // Lang
+        lang: "en"
     );
     // Iaphub is now initialized and ready to use
     isInitialized = true;

@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - Iaphub (4.3.0)
-  - iaphub_flutter (1.2.0):
+  - Iaphub (4.4.1)
+  - iaphub_flutter (1.3.0):
     - Flutter
-    - Iaphub (= 4.3.0)
+    - Iaphub (= 4.4.1)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  Iaphub: a69737b0c4c119e6cdb91754d49b91cabd243484
-  iaphub_flutter: fcc3d5c7a232bd48c6006c09a8be3ef75f731e23
+  Iaphub: e28d06b08103f2fedce8637457904fa2e94cda3c
+  iaphub_flutter: 205b74bc291f07fcd06939a7ef4383a09b4d3eb2
 
 PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 

@@ -37,6 +37,9 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
       else if (call.method == "stop") {
          self.stop(call, result: result, args: args)
       }
+      else if (call.method == "setLang") {
+         self.setLang(call, result: result, args: args)
+      }
       else if (call.method == "login") {
          self.login(call, result: result, args: args)
       }
@@ -92,6 +95,7 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
       let enableDeferredPurchaseListener = args["enableDeferredPurchaseListener"] as? Bool ?? true
       let enableStorekitV2 = args["enableStorekitV2"] as? Bool ?? false
       let environment = args["environment"] as? String ?? "production"
+      let lang = args["lang"] as? String ?? ""
       let sdkVersion = args["sdkVersion"] as? String ?? ""
       let sdk = "flutter"
       // Start SDK
@@ -104,6 +108,7 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
          enableDeferredPurchaseListener: enableDeferredPurchaseListener,
          enableStorekitV2: enableStorekitV2,
          environment: environment,
+         lang: lang,
          sdk: sdk,
          sdkVersion: sdkVersion
       )
@@ -119,6 +124,20 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
       Iaphub.stop()
       // Call result
       result(nil);
+   }
+
+   /**
+    *  Set lang
+    */
+   private func setLang(_ call: FlutterMethodCall, result: @escaping FlutterResult, args: [String: Any]) {
+      let lang = args["lang"] as? String
+    
+      if let lang = lang {
+         let isValid = Iaphub.setLang(lang)
+         result(isValid ? "true" : "false")
+      } else {
+         result("false")
+      }
    }
    
    /**

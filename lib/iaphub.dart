@@ -23,6 +23,7 @@ class Iaphub {
       String? userId,
       bool allowAnonymousPurchase = false,
       bool enableStorekitV2 = false,
+      String lang = '',
       String environment = 'production'}) async {
     // Clear listeners
     removeAllListeners();
@@ -36,6 +37,7 @@ class Iaphub {
       "userId": userId,
       "allowAnonymousPurchase": allowAnonymousPurchase,
       "enableStorekitV2": enableStorekitV2,
+      "lang": lang,
       "environment": environment,
       "sdkVersion": sdkVersion
     });
@@ -76,6 +78,12 @@ class Iaphub {
   /// Stop Iaphub
   static Future<void> stop() async {
     await _invokeMethod('stop', {});
+  }
+
+  /// Set lang
+  static Future<bool> setLang(String lang) async {
+    final result = await _invokeMethodAndParseResult<bool>('setLang', {"lang": lang});
+    return result;
   }
 
   /// Log in user

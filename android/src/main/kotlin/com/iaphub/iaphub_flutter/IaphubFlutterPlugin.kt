@@ -36,6 +36,7 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     when (call.method) {
       "start" -> this.start(call, result)
       "stop" -> this.stop(call, result)
+      "setLang" -> this.setLang(call, result)
       "login" -> this.login(call, result)
       "getUserId" -> this.getUserId(call, result)
       "logout" -> this.logout(call, result)
@@ -86,6 +87,7 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     val allowAnonymousPurchase = this.getBoolean(call, "allowAnonymousPurchase", false)
     val enableDeferredPurchaseListener = this.getBoolean(call, "enableDeferredPurchaseListener", true)
     val environment = this.getString(call, "environment", "production")
+    val lang = this.getString(call, "lang", "")
     val sdkVersion = this.getString(call, "sdkVersion", "")
     val extraSdk = this.getStringOrNull(call, "sdk")
     var sdk = "flutter"
@@ -102,6 +104,7 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       allowAnonymousPurchase=allowAnonymousPurchase,
       enableDeferredPurchaseListener=enableDeferredPurchaseListener,
       environment=environment,
+      lang=lang,
       sdk=sdk,
       sdkVersion=sdkVersion
     )
@@ -149,6 +152,16 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
         this.resolve(null, result);
       }
     }
+  }
+
+  /**
+   * Set lang
+   */
+  fun setLang(call: MethodCall, result: Result) {
+    val lang = this.getString(call, "lang", "")
+    val isValid = Iaphub.setLang(lang)
+    
+    result.success(if (isValid) "true" else "false")
   }
 
   /**

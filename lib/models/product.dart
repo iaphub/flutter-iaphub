@@ -37,6 +37,9 @@ class IaphubProduct {
   /// Subscription intro phases
   final List<IaphubSubscriptionIntroPhase>? subscriptionIntroPhases;
 
+  /// Product metadata
+  final Map<String, String> metadata;
+
   /// Constructor from JSON
   IaphubProduct.fromJson(Map<String, dynamic> json)
       : id = json["id"] ?? "",
@@ -55,5 +58,8 @@ class IaphubProduct {
         subscriptionIntroPhases = json["subscriptionIntroPhases"]
             ?.map<IaphubSubscriptionIntroPhase>(
                 (data) => IaphubSubscriptionIntroPhase.fromJson(data))
-            ?.toList();
+            ?.toList(),
+        metadata = (json["metadata"] as Map?)?.map(
+            (key, value) => MapEntry(key.toString(), value.toString()),
+        ) ?? {};
 }
