@@ -1,3 +1,3 @@
 class IaphubConfig {
-  static const version = "1.3.0";
+  static const version = "1.4.0";
 }
