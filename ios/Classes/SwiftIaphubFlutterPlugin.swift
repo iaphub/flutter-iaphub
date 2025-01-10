@@ -37,6 +37,9 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
       else if (call.method == "stop") {
          self.stop(call, result: result, args: args)
       }
+      else if (call.method == "getSDKVersion") {
+         self.getSDKVersion(call, result: result, args: args)
+      }
       else if (call.method == "setLang") {
          self.setLang(call, result: result, args: args)
       }
@@ -127,6 +130,14 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
    }
 
    /**
+    *  Get SDK version
+    */
+   private func getSDKVersion(_ call: FlutterMethodCall, result: @escaping FlutterResult, args: [String: Any]) {
+      let version = Iaphub.getSDKVersion()
+      result(version)
+   }
+
+   /**
     *  Set lang
     */
    private func setLang(_ call: FlutterMethodCall, result: @escaping FlutterResult, args: [String: Any]) {
@@ -162,8 +173,6 @@ public class SwiftIaphubFlutterPlugin: NSObject, FlutterPlugin, IaphubDelegate {
     *  Get user id
     */
    private func getUserId(_ call: FlutterMethodCall, result: @escaping FlutterResult, args: [String: Any]) {
-      let userId = Iaphub.getUserId()
-      
       guard let userId = Iaphub.getUserId() else {
          return self.reject(result, code: "start_missing", message: "iaphub not started")
       }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -48,6 +49,14 @@ class Iaphub {
         debugPrint(err.message);
       }
     });
+    // Check SDK version
+    final nativeSDKVersion = await _invokeMethodAndParseString('getSDKVersion', {});
+    if (Platform.isIOS && nativeSDKVersion != IaphubConfig.iosSDKVersion) {
+      debugPrint("The \"react-native-iaphub\" plugin requires the native IAPHUB iOS SDK version ${IaphubConfig.iosSDKVersion}.\n\nTo fix this issue:\nRun `pod update Iaphub` in the ios folder of your project to update the IAPHUB iOS SDK to the required version.");
+    }
+    else if (Platform.isAndroid && nativeSDKVersion != IaphubConfig.androidSDKVersion) {
+      debugPrint("The \"react-native-iaphub\" plugin requires the native IAPHUB Android SDK version ${IaphubConfig.androidSDKVersion}.\n\nTo fix this issue:\nRebuild your Android project to update the dependencies with the correct SDK version.");
+    }
   }
 
   /// Add event listeners

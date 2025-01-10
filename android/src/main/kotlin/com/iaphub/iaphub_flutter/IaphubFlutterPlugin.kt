@@ -36,6 +36,7 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     when (call.method) {
       "start" -> this.start(call, result)
       "stop" -> this.stop(call, result)
+      "getSDKVersion" -> this.getSDKVersion(call, result)
       "setLang" -> this.setLang(call, result)
       "login" -> this.login(call, result)
       "getUserId" -> this.getUserId(call, result)
@@ -136,6 +137,14 @@ class IaphubFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     Iaphub.stop()
     // Resolve promise
     this.resolve(null, result)
+  }
+
+  /**
+   * Get SDK version
+   */
+  fun getSDKVersion(call: MethodCall, result: Result) {
+    val version = Iaphub.getSDKVersion()
+    result.success(version)
   }
 
   /**
