@@ -25,6 +25,9 @@ class IaphubProduct {
   /// Product localized description
   final String? localizedDescription;
 
+  /// Product alias
+  final String? alias;
+
   /// Product group id
   final String? group;
 
@@ -52,6 +55,7 @@ class IaphubProduct {
         localizedPrice = json["localizedPrice"],
         localizedTitle = json["localizedTitle"],
         localizedDescription = json["localizedDescription"],
+        alias = json["alias"],
         group = json["group"],
         groupName = json["groupName"],
         subscriptionDuration = json["subscriptionDuration"],
