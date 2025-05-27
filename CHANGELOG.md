@@ -1,19 +1,22 @@
 # Changelog
 This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
-## [1.5.3] - 2024-03-23
+## [1.5.4] - 2025-03-23
+- Android SDK updated to 4.6.6
+
+## [1.5.3] - 2025-03-23
 - iOS SDK updated to 4.6.5
 - Android SDK updated to 4.6.5
 
-## [1.5.2] - 2024-02-15
+## [1.5.2] - 2025-02-15
 - iOS SDK updated to 4.6.3
 - Android SDK updated to 4.6.3
 
-## [1.5.1] - 2024-02-13
+## [1.5.1] - 2025-02-13
 - iOS SDK updated to 4.6.2
 - Android SDK updated to 4.6.2
 
-## [1.5.0] - 2024-01-10
+## [1.5.0] - 2025-01-10
 - iOS SDK updated to 4.6.0
 - Android SDK updated to 4.6.0
 
