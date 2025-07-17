@@ -1,6 +1,11 @@
 # Changelog
 This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-07-17
+- Android SDK updated to 5.0.0
+  - Google Play Billing Library updated to version 7.1.1.
+    Note: the minimum supported Android SDK version is now 21.
+
 ## [1.5.5] - 2025-07-17
 - Fix getProductsForSale/getActiveProducts methods parsing
 
