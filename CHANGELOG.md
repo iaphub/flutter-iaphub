@@ -1,6 +1,9 @@
 # Changelog
 This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.5] - 2025-07-17
+- Fix getProductsForSale/getActiveProducts methods parsing
+
 ## [1.5.4] - 2025-03-23
 - Android SDK updated to 4.6.6
 

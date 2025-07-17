@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'iaphub_flutter'
-  s.version          = '1.5.4'
+  s.version          = '1.5.5'
   s.summary          = 'IAPHUB SDK for Flutter'
   s.description      = <<-DESC
   The easiest way to monetize your iOS and Android Flutter apps by selling in-app purchases. Sell subscriptions and other digital goods using our user-friendly SDK.
