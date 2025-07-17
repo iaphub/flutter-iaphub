@@ -193,8 +193,14 @@ class Iaphub {
       [dynamic args]) async {
     try {
       final data = await _channel.invokeMethod<String>(methodName, args);
+      final decoded = jsonDecode(data as String);
 
-      return jsonDecode(data as String);
+      // Handle List<Map<String, dynamic>> specifically
+      if (decoded is List && T.toString() == 'List<Map<String, dynamic>>') {
+        return decoded.cast<Map<String, dynamic>>() as T;
+      }
+
+      return decoded as T;
     } on PlatformException catch (err) {
       throw err.details != null
           ? IaphubError.fromJson(jsonDecode(err.details))
