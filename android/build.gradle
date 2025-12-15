@@ -1,5 +1,5 @@
 group 'com.iaphub.iaphub_flutter'
-version '2.0.0'
+version '2.1.0'
 
 def safeExtGet(String prop, Object fallback) {
     return rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback

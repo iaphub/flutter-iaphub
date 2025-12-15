@@ -1,6 +1,12 @@
 # Changelog
 This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-12-15
+- iOS SDK updated to 4.6.7
+- Android SDK updated to 5.1.1
+- Update Android build.gradle for better compatibility
+- Fix log
+
 ## [2.0.0] - 2025-07-17
 - Android SDK updated to 5.0.0
   - Google Play Billing Library updated to version 7.1.1.
