@@ -1,39 +1,26 @@
 group 'com.iaphub.iaphub_flutter'
 version '2.0.0'
 
-buildscript {
-    ext.kotlin_version = '1.6.10'
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+def safeExtGet(String prop, Object fallback) {
+    return rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+def kotlinVersion = safeExtGet('kotlin_version', '2.1.0')
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    namespace 'com.iaphub.iaphub_flutter'
+    compileSdk safeExtGet('compileSdkVersion', 34)
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility safeExtGet('sourceCompatibility', JavaVersion.VERSION_1_8)
+        targetCompatibility safeExtGet('targetCompatibility', JavaVersion.VERSION_1_8)
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = safeExtGet('jvmTarget', '1.8')
     }
 
     sourceSets {
@@ -41,12 +28,12 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 19
+        minSdk safeExtGet('minSdkVersion', 19)
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.iaphub:iaphub-android-sdk:5.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation 'com.google.code.gson:gson:2.8.9'
 }
