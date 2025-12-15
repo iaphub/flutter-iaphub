@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - Iaphub (4.6.5)
-  - iaphub_flutter (1.5.2):
+  - Iaphub (4.6.7)
+  - iaphub_flutter (2.0.0):
     - Flutter
-    - Iaphub (= 4.6.5)
+    - Iaphub (= 4.6.7)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/iaphub_flutter/ios"
 
 SPEC CHECKSUMS:
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  Iaphub: 6b4f156fe42961e5e914aeaa5e3e147ed5063b1e
-  iaphub_flutter: 691351d7e017e6a3653a41ab1c177615987b8421
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  Iaphub: c04f61f333809ea14f5c314df590ac7037b45921
+  iaphub_flutter: 8743fb2855257a3f48586b1b6ed6fbf8d3aba2f5
 
-PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
+PODFILE CHECKSUM: 0dbd5a87e0ace00c9610d2037ac22083a01f861d
 
 COCOAPODS: 1.15.2
